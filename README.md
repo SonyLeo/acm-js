@@ -30,9 +30,10 @@ school-algorithm-practice/
 
 ### `solutions/`
 
-保存每道题的 JavaScript 解答，一个题号对应一个文件，例如：
+保存每道题的 JavaScript 解答。当前正在练习的题使用 `current-` 前缀；完成本地验证后移除该前缀，例如：
 
 ```text
+solutions/current-HJ23.js
 solutions/HJ1.js
 solutions/HJ5.js
 ```
@@ -41,9 +42,10 @@ solutions/HJ5.js
 
 ### `cases/`
 
-保存本地测试输入文件。文件内容应与提交平台的标准输入格式一致，例如：
+保存本地测试输入文件。当前题的用例使用 `current-` 前缀，完成后移除该前缀。文件内容应与提交平台的标准输入格式一致，例如：
 
 ```text
+cases/current-HJ23.in
 cases/HJ1.in
 cases/HJ5.in
 cases/HJ5-multi.in
@@ -69,7 +71,7 @@ cases/HJ5-multi.in
 每道题按以下顺序执行：
 
 1. 阅读题面，写出输入、输出、约束和至少两个边界情况。
-2. 在 `solutions/` 创建对应文件，例如 `HJ8.js`。
+2. 创建 `solutions/current-HJ<编号>.js` 和三组 `cases/current-HJ<编号>*.in` 用例。
 3. 先写 ACM 输入输出骨架，再实现算法。
 4. 在 `cases/` 准备样例输入。
 5. 用管道命令运行本地测试。
@@ -124,6 +126,12 @@ Get-Content -Raw .\cases\HJ1.in | node .\solutions\HJ1.js
 
 ```powershell
 Get-Content -Raw .\cases\HJ5-multi.in | node .\solutions\HJ5.js
+```
+
+当前练习题示例：
+
+```powershell
+Get-Content -Raw .\cases\current-HJ23.in | node .\solutions\current-HJ23.js
 ```
 
 也可以直接使用字符串输入：
