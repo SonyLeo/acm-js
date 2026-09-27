@@ -11,11 +11,14 @@
 - [x] HJ10
 - [x] HJ9
 - [x] HJ23
+- [x] HJ80
+- [x] HJ102
 
 ## 当前模块
 
-- 当前练习：HJ80（整型数组合并，`solutions/current-HJ80.js`）。
-- 哈希、Set 与排序输出：HJ8、HJ10、HJ9、HJ23 已完成本地验证，下一题 HJ80。
+- 当前练习：HJ11（数字颠倒，`solutions/current-HJ11.js`）。
+- 哈希、Set 与排序输出：HJ8、HJ10、HJ9、HJ23、HJ80、HJ102 已完成本地验证；下一模块为字符串扫描与转换，当前题 HJ11。
+- 补充练习：逐列最大值的最小值（`solutions/exercise-column-max-min.js`）。
 - 待复写：HJ6（质因数分解，+1 天）。
 
 ## 每题记录

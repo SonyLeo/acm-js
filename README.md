@@ -23,6 +23,7 @@ school-algorithm-practice/
 ├─ README.md
 ├─ .gitignore
 ├─ solutions/
+├─ tests/
 ├─ cases/
 ├─ docs/
 └─ notes/
@@ -30,7 +31,7 @@ school-algorithm-practice/
 
 ### `solutions/`
 
-保存每道题的 JavaScript 解答。当前正在练习的题使用 `current-` 前缀；完成本地验证后移除该前缀，例如：
+保存每道题的 JavaScript 解答。后续新题使用核心代码模式：文件只导出一个函数，不负责标准输入输出。当前正在练习的题使用 `current-` 前缀；完成本地验证后移除该前缀，例如：
 
 ```text
 solutions/current-HJ23.js
@@ -38,11 +39,19 @@ solutions/HJ1.js
 solutions/HJ5.js
 ```
 
-文件应当只完成一件事：读取标准输入、计算答案、输出题目要求的内容。不要在最终代码中保留调试用的 `console.log`、截图或临时数据。
+新题的函数只完成算法计算，测试文件负责调用与结果校验。不要在核心函数中保留调试用的 `console.log`、截图或临时数据。
+
+### `tests/`
+
+保存核心代码模式的 Node 原生测试。每题包含公开样例和两个边界用例；测试负责传入参数并核对返回值：
+
+```powershell
+node --test .\tests\current-HJ<编号>.test.js
+```
 
 ### `cases/`
 
-保存本地测试输入文件。当前题的用例使用 `current-` 前缀，完成后移除该前缀。文件内容应与提交平台的标准输入格式一致，例如：
+保存既有 ACM 模式题目的本地测试输入文件。新题默认使用 `tests/` 自动测试，不再创建 `.in` 文件。文件内容应与提交平台的标准输入格式一致，例如：
 
 ```text
 cases/current-HJ23.in
@@ -71,10 +80,10 @@ cases/HJ5-multi.in
 每道题按以下顺序执行：
 
 1. 阅读题面，写出输入、输出、约束和至少两个边界情况。
-2. 创建 `solutions/current-HJ<编号>.js` 和三组 `cases/current-HJ<编号>*.in` 用例。
-3. 先写 ACM 输入输出骨架，再实现算法。
-4. 在 `cases/` 准备样例输入。
-5. 用管道命令运行本地测试。
+2. 创建 `solutions/current-HJ<编号>.js` 和 `tests/current-HJ<编号>.test.js`。
+3. 只实现核心函数，不写输入输出代码。
+4. 在测试文件准备公开样例和两个边界用例。
+5. 用 `node --test` 运行自动测试。
 6. 对照预期输出检查格式，删除所有调试输出。
 7. 将代码提交到练习平台，确认公开和隐藏测试。
 8. 在 `notes/progress.md` 或单独笔记中记录复盘结果。
@@ -128,10 +137,10 @@ Get-Content -Raw .\cases\HJ1.in | node .\solutions\HJ1.js
 Get-Content -Raw .\cases\HJ5-multi.in | node .\solutions\HJ5.js
 ```
 
-当前练习题示例：
+核心代码模式示例：
 
 ```powershell
-Get-Content -Raw .\cases\current-HJ23.in | node .\solutions\current-HJ23.js
+node --test .\tests\current-HJ<编号>.test.js
 ```
 
 也可以直接使用字符串输入：

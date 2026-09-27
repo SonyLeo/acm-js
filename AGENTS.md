@@ -76,25 +76,45 @@ const input = fs.readFileSync(0, 'utf8').trimEnd();
 - 最终只能输出题目要求的结果；删除调试用 `console.log`。
 - 每题检查空值、长度为 1、重复值、刚好整除、最小/最大输入及题目相关特殊字符。
 
+## 核心代码模式
+
+从本规则更新后开始的新题，默认使用核心代码模式，而不是 ACM 标准输入输出模式。用户只实现题目指定的核心函数，不在解答文件中读取标准输入、解析 token 或调用 `console.log`。
+
+每道新题由 Agent 自动创建：
+
+- `solutions/current-HJ<编号>.js`：函数签名、题意、参数/返回值说明和 TODO；使用 CommonJS 导出核心函数。
+- `tests/current-HJ<编号>.test.js`：Node 原生测试文件，包含公开样例和两个边界用例；负责构造参数、调用函数和断言返回值。
+
+测试命令：
+
+```powershell
+node --test .\tests\current-HJ<编号>.test.js
+```
+
+函数参数应是已解析的 JavaScript 值，例如字符串、数字、数组或对象；函数返回题目要求的 JavaScript 值。测试文件负责自动比对返回值。题目本地完成后，Agent 移除解答和测试文件名中的 `current-` 前缀归档。
+
+旧题保留原有 ACM 模式的 `solutions/` 和 `cases/` 文件，不强制迁移。仅在用户明确要求时，才为旧题补充核心代码模式版本。
+
 ## 文件约定
 
 |目录|用途|规则|
 |---|---|---|
-|`solutions/`|题目代码|进行中题使用 `current-HJ<编号>.js`；本地完成后移除 `current-` 前缀归档|
-|`cases/`|本地输入用例|进行中题使用 `current-HJ<编号>*.in`；本地完成后移除 `current-` 前缀归档|
+|`solutions/`|题目代码|新题只放导出的核心函数；进行中题使用 `current-HJ<编号>.js`，完成后移除 `current-` 前缀|
+|`tests/`|核心代码模式测试|新题使用 `current-HJ<编号>.test.js`，包含公开与两个边界断言，完成后移除 `current-` 前缀|
+|`cases/`|旧 ACM 题的输入用例|保留既有 `.in` 文件；新题不再创建 `.in` 文件，除非用户要求 ACM 模式|
 |`notes/`|进度、错题和复盘|每题完成后更新 `progress.md`；复杂题可建单独笔记|
 |`docs/`|长期学习材料|除非用户明确要求，不修改既有文档|
 
-每道新题开始时，Agent 自动创建 `solutions/current-HJ<编号>.js` 的练习骨架和三组 `cases/current-HJ<编号>*.in` 输入文件。骨架包含简短题意、输入/输出说明、三组本地输入及预期输出示例和 ACM 标准输入读取，算法部分只保留 TODO；用户无需手动创建文件，专注完成算法实现。题目本地完成后，Agent 移除解答和用例文件名中的 `current-` 前缀归档。
+每道新题开始时，Agent 自动创建 `solutions/current-HJ<编号>.js` 的核心函数骨架和 `tests/current-HJ<编号>.test.js`。骨架包含简短题意、函数参数/返回值、三组函数调用及预期返回值示例，算法部分只保留 TODO；用户无需手动创建文件，专注完成算法实现。题目本地完成后，Agent 移除解答和测试文件名中的 `current-` 前缀归档。
 
 本地运行示例：
 
 ```powershell
 Get-Content -Raw .\cases\HJ5.in | node .\solutions\HJ5.js
-Get-Content -Raw .\cases\current-HJ23.in | node .\solutions\current-HJ23.js
+node --test .\tests\current-HJ<编号>.test.js
 ```
 
-每题开始时，准备或确认三组本地输入：官方样例、两个针对核心风险的模拟隐藏用例，并提供预期输出。模拟隐藏用例用于本地逐次运行，不嵌入提交程序，也不声称等同于平台隐藏测试。
+每题开始时，准备或确认三组自动断言：官方样例、两个针对核心风险的模拟隐藏用例，并提供预期返回值。模拟隐藏用例由测试文件执行，不嵌入核心函数，也不声称等同于平台隐藏测试。
 
 每题至少验证：官方样例和两个自造边界样例。本地三组通过记为“本地完成”；用户确认练习平台结果后才标为“已 AC”，平台提交不是本地练习的阻塞条件。
 

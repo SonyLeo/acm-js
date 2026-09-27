@@ -10,13 +10,16 @@ const fs = require('fs');
 const input = fs.readFileSync(0, 'utf8').trim();
 
 // TODO: 读取两组整数，合并去重，按数值升序输出。
+const tokens = input.split(/\s+/).map(Number)
 
-const init = input.split("\n")
-const str1 = init[1]
-const str2 = init[3]
-const arr1 = str1.split(" ").map(Number)
-const arr2 = str2.split(" ").map(Number)
-const arr = [...arr1, ...arr2]
-const set = new Set(arr)
+let position = 0
+const len1 = tokens[position++]
+const arr1 = tokens.slice(position, position + len1)
+position += len1
+
+const len2 = tokens[position++]
+const arr2 = tokens.slice(position, position + len2)
+
+const set = new Set([...arr1, ...arr2])
 const result = Array.from(set).sort((a,b) => a-b)
 console.log(result.join(" "))
