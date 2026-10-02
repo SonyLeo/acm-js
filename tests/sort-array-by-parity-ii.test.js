@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { sortArrayByParityII } = require('../solutions/current-sort-array-by-parity-ii');
+const { sortArrayByParityII } = require('../solutions/sort-array-by-parity-ii');
 
 function assertValid(result, original) {
   assert.equal(result.length, original.length);

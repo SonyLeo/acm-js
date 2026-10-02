@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { sortLettersInPlace } = require('../solutions/current-HJ26');
+const { sortLettersInPlace } = require('../solutions/HJ26');
 
 test('公开样例：字母忽略大小写排序，非字母留在原位', () => {
   assert.equal(

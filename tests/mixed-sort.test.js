@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { sortMixed } = require('../solutions/current-mixed-sort');
+const { sortMixed } = require('../solutions/mixed-sort-review');
 
 test('公开样例：数字升序，小写字母整体在大写前', () => {
   assert.equal(sortMixed('b1A2a3'), 'a1b2A3');

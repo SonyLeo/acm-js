@@ -16,14 +16,17 @@
 - [x] 补充练习：矩阵列最大值的最小值
 - [x] HJ26
 - [x] 数字字母混合排序变体
+- [x] LeetCode 922 按奇偶排序数组 II
+- [x] 区间合并（左闭右开）
+- [x] 二分搜索基础
 
 ## 当前模块
 
-- 当前练习：LeetCode 922 按奇偶排序数组 II（`solutions/current-sort-array-by-parity-ii.js`）。
-- 当前模块：分类、稳定排序与位置回填；HJ26、数字字母混合排序变体已完成，下一题为 LeetCode 922。
+- 当前练习：二分搜索左右边界变体（明日开始）。
+- 当前模块：排序、查找与区间扫描；分类、稳定排序与位置回填已完成本地复习。
 - 排队：HJ11（数字颠倒，`solutions/queued-HJ11.js`）。
 - 已完成补充练习：逐列最大值的最小值（`solutions/exercise-column-max-min.js`）。
-- 待复写：HJ6（质因数分解，+1 天）。
+- 待复写：HJ6（质因数分解，+1 天）；HJ26（闭卷复写暂存于 `solutions/queued-HJ26-rewrite.js`）。
 
 ## 每题记录
 

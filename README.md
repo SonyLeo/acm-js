@@ -66,7 +66,7 @@ cases/HJ5-multi.in
 
 保存长期参考资料：
 
-- `algorithm-study-map.md`：题目分类、优先级、题型和学习路线。
+- `algorithm-review-plan.md`：当前考试范围内的复习路线和题目编排。
 - `algorithm-agent-coaching-guide.md`：交给算法辅导 Agent 使用的总提示词、分层提示策略、代码审查标准和交接格式。
 
 ### `notes/`
@@ -175,7 +175,7 @@ node --test .\tests\current-HJ<编号>.test.js
 HJ1 -> HJ2 -> HJ4 -> HJ5 -> HJ6 -> HJ8 -> HJ10 -> HJ14
 ```
 
-先完成字符串、分块、进制转换、质因数、哈希和排序，再进入双指针、栈、动态规划和搜索。
+当前活跃练习只覆盖考试范围：位运算/进制转换、字符串、数组、队列与栈、链表、Map/Set、排序与查找、枚举、滑动窗口、双指针和前缀和。动态规划、图搜索、并查集、贪心等内容不进入当前训练计划。
 
 ## Git 管理建议
 
