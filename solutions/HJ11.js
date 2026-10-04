@@ -8,7 +8,17 @@
  * @returns {number}
  */
 function reverseInteger(value) {
-  // TODO: 只实现数字颠倒的核心逻辑。
+
+  let n = value;
+  let result = 0;
+
+  while(n > 0) {
+    const digit = n % 10;
+    result = result * 10 + digit;
+    n = Math.floor(n / 10)
+  }
+
+  return result;
 }
 
 module.exports = { reverseInteger };
