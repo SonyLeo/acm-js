@@ -1,6 +1,8 @@
 # 练习进度
 
 > 今日完整复盘：[2026-10-04-practice-review.md](./2026-10-04-practice-review.md)
+>
+> 今日完整复盘：[2026-10-08-enumeration-window-prefix-review.md](./2026-10-08-enumeration-window-prefix-review.md)
 
 ## 本地完成
 
