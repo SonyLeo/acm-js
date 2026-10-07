@@ -14,11 +14,19 @@
  * @returns {number}
  */
 function kthFromEnd(head, k) {
-  // TODO:
-  // 1. 准备 fast 和 slow，初始都指向 head。
-  // 2. fast 先走 k 步。
-  // 3. fast、slow 一起走到 fast 为 null。
-  // 4. slow 所在节点就是倒数第 k 个，返回 slow.value。
+  let fast = head;
+  let slow = head;
+
+  for (let i = 0; i < k; i++) {
+    fast = fast.next;
+  }
+
+  while(fast !== null) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+
+  return slow.value;
 }
 
 module.exports = { kthFromEnd };
