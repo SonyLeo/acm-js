@@ -4,6 +4,8 @@
 >
 > 今日完整复盘：[2026-10-08-enumeration-window-prefix-review.md](./2026-10-08-enumeration-window-prefix-review.md)
 
+> 当前模块题面：[前缀和与内存窗口练习题](../docs/prefix-sum-and-memory-window-practice.md)
+
 ## 本地完成
 
 - [x] HJ1
@@ -54,6 +56,7 @@
 
 - 当前练习：子数组和等于目标值的数量（前缀和 + Map，核心代码模式）。
 - 当前模块：滑动窗口、双指针与前缀和。
+- 后续顺序：合法内存记录的受限总占用窗口（滑动窗口） -> 合法内存记录的平均占用阈值（前缀和进阶）。
 - 排队：HJ48 链表插入/删除模拟。
 - 已完成补充练习：逐列最大值的最小值（`solutions/exercise-column-max-min.js`）。
 - 待复写：HJ6（质因数分解，+1 天）；HJ26（闭卷复写暂存于 `solutions/queued-HJ26-rewrite.js`）。
