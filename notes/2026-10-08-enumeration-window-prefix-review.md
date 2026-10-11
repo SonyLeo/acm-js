@@ -311,7 +311,7 @@ for (const [left, right] of queries) {
 
 ## 下一题预告：前缀和 + Map
 
-当前文件：`solutions/current-subarray-sum-count.js`
+当前文件：`solutions/current-ex-ps-002-subarray-sum-count.js`
 
 题目是统计“和等于 `target` 的连续子数组数量”。单独的前缀和只能快速求某一段的和；加入 Map 后可以在遍历到当前前缀和 `prefixSum` 时，统计此前有多少次前缀和等于 `prefixSum - target`。
 
@@ -359,13 +359,13 @@ for (const num of nums) {
 
 在另一台机器拉取 `main` 后，从以下两个文件继续：
 
-- 解答：`solutions/current-subarray-sum-count.js`
-- 测试：`tests/current-subarray-sum-count.test.js`
+- 解答：`solutions/current-ex-ps-002-subarray-sum-count.js`
+- 测试：`tests/current-ex-ps-002-subarray-sum-count.test.js`
 
 实现后运行：
 
 ```powershell
-node --test .\tests\current-subarray-sum-count.test.js
+node --test .\tests\current-ex-ps-002-subarray-sum-count.test.js
 ```
 
 三组测试通过后，再把文件名中的 `current-` 去掉归档，并在 `notes/progress.md` 更新状态。

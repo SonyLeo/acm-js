@@ -42,8 +42,8 @@ countSubarraysWithSum(nums, target)
 
 当前练习文件：
 
-- `solutions/current-subarray-sum-count.js`
-- `tests/current-subarray-sum-count.test.js`
+- `solutions/current-ex-ps-002-subarray-sum-count.js`
+- `tests/current-ex-ps-002-subarray-sum-count.test.js`
 
 ## 题目 2：合法内存记录的受限总占用窗口
 

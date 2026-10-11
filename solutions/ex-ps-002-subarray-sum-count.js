@@ -9,11 +9,20 @@
  * @returns {number}
  */
 function countSubarraysWithSum(nums, target) {
-  // TODO:
-  // 1. prefixSum 表示从开头累加到当前元素的和；countMap 记录每个前缀和出现次数。
-  // 2. 先记录前缀和 0 出现一次，代表“从下标 0 开始”的空前缀。
-  // 3. 遍历每个 num：更新 prefixSum；查找 prefixSum - target 出现过几次，并累加到答案。
-  // 4. 再将当前 prefixSum 的出现次数加一。顺序不能颠倒。
+    let result = 0;
+    let prefixSum = 0;
+    let countMap = new Map([[0, 1]]);
+
+    for (const num of nums) {
+        prefixSum += num;
+
+        const neededPrefixSum = prefixSum - target;
+        result += countMap.get(neededPrefixSum) || 0;
+
+        countMap.set(prefixSum, (countMap.get(prefixSum) || 0) + 1);
+    }
+
+    return result;
 }
 
 module.exports = { countSubarraysWithSum };

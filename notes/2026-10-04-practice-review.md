@@ -646,6 +646,6 @@ return stack.length === 0;
 ## 明日建议
 
 1. 先不看答案，口述并手写“有效括号匹配”的栈不变量与核心循环。
-2. 开始 [链表倒数第 k 个节点](/D:/Projects/Work/school-algorithm-practice/solutions/current-kth-from-end.js)，重点手推 `fast` 先走 `k` 步后的距离差。
+2. 开始 [链表倒数第 k 个节点](../solutions/kth-from-end.js)，重点手推 `fast` 先走 `k` 步后的距离差。
 3. 完成后安排一次短复写：任选 HJ11 或队列模拟，限制 10 分钟，不看历史代码。
 4. 可选 VS Code 调试：在链表题中观察 `fast.value`、`slow.value`，确认两指针始终相差 `k` 个节点。

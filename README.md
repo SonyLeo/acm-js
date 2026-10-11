@@ -66,6 +66,8 @@ cases/HJ5-multi.in
 
 保存长期参考资料：
 
+- `problem-catalog.md`：题目的唯一索引入口，按题号或考点定位题面、代码、测试与复盘。
+- `algorithm-templates.md`：按模板反查已练题的速查表。
 - `algorithm-review-plan.md`：当前考试范围内的复习路线和题目编排。
 - `algorithm-agent-coaching-guide.md`：交给算法辅导 Agent 使用的总提示词、分层提示策略、代码审查标准和交接格式。
 
@@ -73,21 +75,22 @@ cases/HJ5-multi.in
 
 保存个人学习过程，不保存复制来的完整题解。推荐记录：首次耗时、思路、错误类型、复杂度、边界条件和重写结果。
 
-- `progress.md`：当前完成进度和每题复盘模板。
+- `progress.md`：当前题、下一步与待复写的短看板；完整清单维护在 `docs/problem-catalog.md`。
 
 ## 单题练习流程
 
 每道题按以下顺序执行：
 
-1. 阅读题面，写出输入、输出、约束和至少两个边界情况。
-2. 创建 `solutions/current-HJ<编号>.js` 和 `tests/current-HJ<编号>.test.js`。
-3. 只实现核心函数，不写输入输出代码。
-4. 在测试文件准备公开样例和两个边界用例。
-5. 用 `node --test` 运行自动测试。
-6. 对照预期输出检查格式，删除所有调试输出。
-7. 将代码提交到练习平台，确认公开和隐藏测试。
-8. 在 `notes/progress.md` 或单独笔记中记录复盘结果。
-9. 间隔 1 天、3 天和 7 天重新实现，确认不是只看懂了题解。
+1. 在 `docs/problem-catalog.md` 登记稳定编号、考点、主模板、状态与题面链接。
+2. 阅读题面，写出输入、输出、约束和至少两个边界情况。
+3. 创建 `solutions/current-<稳定编号小写>-<slug>.js` 和同名 `tests/` 文件。
+4. 只实现核心函数，不写输入输出代码。
+5. 在测试文件准备公开样例和两个边界用例。
+6. 用 `node --test` 运行自动测试。
+7. 对照预期输出检查格式，删除所有调试输出。
+8. 将代码提交到练习平台，确认公开和隐藏测试。
+9. 完成后更新目录状态和资料链接，再在 `notes/progress.md` 或单独笔记中记录复盘结果。
+10. 间隔 1 天、3 天和 7 天重新实现，确认不是只看懂了题解。
 
 ## ACM 输入输出模板
 
@@ -140,7 +143,7 @@ Get-Content -Raw .\cases\HJ5-multi.in | node .\solutions\HJ5.js
 核心代码模式示例：
 
 ```powershell
-node --test .\tests\current-HJ<编号>.test.js
+node --test .\tests\current-<稳定编号小写>-<slug>.test.js
 ```
 
 也可以直接使用字符串输入：

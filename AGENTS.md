@@ -34,6 +34,8 @@ docs/algorithm-agent-coaching-guide.md
 
 详细复习路线见 `docs/algorithm-review-plan.md`。题目按可迁移模板连续训练，不按 HJ 编号跳跃；每组完成 3-5 题后安排闭卷复写。
 
+题目、考点、模板、代码、测试与复盘的唯一索引见 `docs/problem-catalog.md`；按模板反查题目见 `docs/algorithm-templates.md`。`notes/progress.md` 仅是当前行动看板，不重复维护完整题目清单。题目状态变动时，先更新习题目录，再更新看板。
+
 后续选题必须限制在上述考试范围。题目安排以 `docs/algorithm-review-plan.md` 和本文件中的考试范围为准。
 
 当前主线：分类、稳定排序与位置回填：HJ26 -> 数字字母混排变体 -> LeetCode 922。HJ11 数字颠倒保留在排队列表，矩阵列最大值练习已完成本地测试。
@@ -55,9 +57,9 @@ HJ1、HJ2、HJ4 是字符串基础复习锚点；HJ5、HJ6 是进制与质因数
 
 每题建议限时：简单题 25 分钟，中等题 45 分钟。超时后按上述层级求助。
 
-## JavaScript ACM 规则
+## JavaScript ACM 规则（仅旧 ACM 题）
 
-每个 `solutions/<题号>.js` 必须是独立可提交程序，使用 Node.js 原生能力；不要引入 npm 包。
+旧 ACM 模式的 `solutions/<题号>.js` 必须是独立可提交程序，使用 Node.js 原生能力；不要引入 npm 包。新题默认遵循下方“核心代码模式”，不读取标准输入输出。
 
 ```js
 const fs = require('fs');
@@ -79,13 +81,13 @@ const input = fs.readFileSync(0, 'utf8').trimEnd();
 
 每道新题由 Agent 自动创建：
 
-- `solutions/current-HJ<编号>.js`：函数签名、题意、参数/返回值说明和 TODO；使用 CommonJS 导出核心函数。
-- `tests/current-HJ<编号>.test.js`：Node 原生测试文件，包含公开样例和两个边界用例；负责构造参数、调用函数和断言返回值。
+- `solutions/current-<稳定编号小写>-<slug>.js`：函数签名、题意、参数/返回值说明和 TODO；使用 CommonJS 导出核心函数。
+- `tests/current-<稳定编号小写>-<slug>.test.js`：Node 原生测试文件，包含公开样例和两个边界用例；负责构造参数、调用函数和断言返回值。
 
 测试命令：
 
 ```powershell
-node --test .\tests\current-HJ<编号>.test.js
+node --test .\tests\current-<稳定编号小写>-<slug>.test.js
 ```
 
 函数参数应是已解析的 JavaScript 值，例如字符串、数字、数组或对象；函数返回题目要求的 JavaScript 值。测试文件负责自动比对返回值。题目本地完成后，Agent 移除解答和测试文件名中的 `current-` 前缀归档。
@@ -96,19 +98,26 @@ node --test .\tests\current-HJ<编号>.test.js
 
 |目录|用途|规则|
 |---|---|---|
-|`solutions/`|题目代码|新题只放导出的核心函数；进行中题使用 `current-HJ<编号>.js`，完成后移除 `current-` 前缀|
-|`tests/`|核心代码模式测试|新题使用 `current-HJ<编号>.test.js`，包含公开与两个边界断言，完成后移除 `current-` 前缀|
+|`solutions/`|题目代码|新题只放导出的核心函数；进行中题使用 `current-<稳定编号小写>-<slug>.js`，完成后移除 `current-` 前缀|
+|`tests/`|核心代码模式测试|新题使用与解答同名的 `current-*.test.js`，包含公开与两个边界断言，完成后移除 `current-` 前缀|
 |`cases/`|旧 ACM 题的输入用例|保留既有 `.in` 文件；新题不再创建 `.in` 文件，除非用户要求 ACM 模式|
 |`notes/`|进度、错题和复盘|每题完成后更新 `progress.md`；复杂题可建单独笔记|
-|`docs/`|长期学习材料|除非用户明确要求，不修改既有文档|
+|`docs/`|长期学习材料|`problem-catalog.md` 是题目索引，`algorithm-templates.md` 是模板反查；新题按登记规则补充题面|
 
-每道新题开始时，Agent 自动创建 `solutions/current-HJ<编号>.js` 的核心函数骨架和 `tests/current-HJ<编号>.test.js`。骨架包含简短题意、函数参数/返回值、三组函数调用及预期返回值示例，算法部分只保留 TODO；用户无需手动创建文件，专注完成算法实现。题目本地完成后，Agent 移除解答和测试文件名中的 `current-` 前缀归档。
+每道新题开始时，Agent 必须按下列顺序完成登记与初始化：
+
+1. 在 `docs/problem-catalog.md` 新增条目：稳定编号、名称、来源、考点（不超过三个）、主模板、初始状态和题面链接。
+2. 若是自定义题或需要仓库内题面，创建 `docs/<稳定编号小写>-<slug>.md`；官方旧题可保留平台题面链接。
+3. 创建同名规则的核心函数骨架和测试文件。骨架包含简短题意、参数/返回值、三组函数调用及预期返回值示例，算法部分只保留 TODO。
+4. 将 `notes/progress.md` 更新为当前题，并列出下一题。
+
+稳定编号规则：官方题使用 `HJ<编号>` 或 `LC-<编号>`；自定义题使用 `EX-模块-序号`；闭卷复写使用 `RW-原编号`。历史文件无需为了此规则批量改名。题目本地完成后，移除解答和测试文件名中的 `current-` 前缀归档，并在目录中更新状态与资料链接。
 
 本地运行示例：
 
 ```powershell
 Get-Content -Raw .\cases\HJ5.in | node .\solutions\HJ5.js
-node --test .\tests\current-HJ<编号>.test.js
+node --test .\tests\current-<稳定编号小写>-<slug>.test.js
 ```
 
 每题开始时，准备或确认三组自动断言：官方样例、两个针对核心风险的模拟隐藏用例，并提供预期返回值。模拟隐藏用例由测试文件执行，不嵌入核心函数，也不声称等同于平台隐藏测试。
